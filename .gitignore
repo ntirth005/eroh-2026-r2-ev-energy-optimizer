@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+# raw / regenerated data (see data/README.md)
+data/*.csv
+!data/wind_power_curve.csv
+data/*.json
+data/*.pkl
+data/runs/
+out/
+.DS_Store
