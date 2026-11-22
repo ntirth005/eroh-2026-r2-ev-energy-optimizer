@@ -2,6 +2,9 @@
 
 # Engineers' Ring of Honour 2026 · Round 2 — AI energy framework for an EV charging and battery-swapping network
 
+**Naumisharanya Tirth** · Indian Institute of Information Technology (IIIT) Raichur · B.Tech CSE, 2027  
+**Full report (PDF):** [Case Study - Naumisharanya Tirth.pdf](Case%20Study%20-%20Naumisharanya%20Tirth.pdf)
+
 Case study (Naukri Campus, Engineers' Ring of Honour 2026, Round 2): an operator of public DC fast-charging hubs and battery-swap stations in five Indian metros (Delhi NCR, Mumbai MMR, Bengaluru, Hyderabad, Chennai; 1,200 MW, 600 MWh storage, 35 % renewable energy) wants to raise service reliability to about 90 %, cut storage and conversion losses to 8 % and keep EBITDA margins above 12 % in every cluster, in INR within the IEX market.
 
 This repository is a **digital twin + decision framework**: probabilistic forecasting, day-ahead stochastic bidding and pricing, real-time storage MPC, simulated on 5 years of hourly data.
@@ -36,7 +39,11 @@ flowchart TD
 | EBITDA margin (network / weakest cluster) | > 12 % | 9.3 % / 6.0 % | **18.8 % / 13.7 %** |
 | Network EBITDA | – | ₹338 Cr | **₹824 Cr** |
 
-Reliability depends on an assumed driver response to the steering incentive (the 89.7 % target needs the incentive to redirect at least about 62 % of overloaded-hub demand; we assume up to 70 %); the loss target needs SiC chargers. See `results/` and the report for the ladder, stress tests, sensitivities and the synthetic-vs-real comparison.
+![Improvement ladder](results/real/charts/fig1_ladder.png)
+
+![Synthetic vs real data](results/fig_compare.png)
+
+Reliability depends on an assumed driver response to the steering incentive (break-even σ_max ≈ 0.62, i.e. 62 % of hot-hub overflow redirectable; we assume 0.70); the loss target needs SiC chargers. See `results/` and the report for the ladder, stress tests, sensitivities and the synthetic-vs-real comparison.
 
 > **Data caveat.** IEX prices and ERA5 weather are real. Charging/swap demand, customer price logs and battery state-of-health records are synthetic, and the incumbent baseline is calibrated to the case's stated KPIs.
 
@@ -49,6 +56,8 @@ src/       params.py  datagen.py  degradation.py  calibrate.py  forecast.py
 data/      README.md  (raw data not committed)
 results/   real/  synthetic/   (tables + charts for each data mode)
 ```
+
+*The report PDF refers to `code/`, `real/` and `synthetic/`; in this repository these are `src/`, `results/real/` and `results/synthetic/`.*
 
 ## Setup
 

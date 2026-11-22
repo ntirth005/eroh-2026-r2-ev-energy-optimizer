@@ -1,6 +1,6 @@
 # AI-Powered Energy Allocation, Storage Optimisation and Dynamic Pricing for a National EV Charging and Battery-Swapping Network
 
-*Engineers' Ring of Honour 2026, Round 2 case study. All numbers come from the simulation in `code/` and the tables in `results/real/tables/` and `results/synthetic/tables/`.*
+*Engineers' Ring of Honour 2026, Round 2 case study. All numbers come from the simulation in `src/` and the tables in `results/real/tables/` and `results/synthetic/tables/`.*
 
 ---
 
@@ -111,7 +111,7 @@ flowchart TD
 
 **Why we show both synthetic and real.** The case gives no data, so we first built the model on fully made-up data. We then switched to real prices and weather. Section 14 shows both side by side.
 
-### 5.2 Key assumptions (full list in `code/params.py`)
+### 5.2 Key assumptions (full list in `src/params.py`)
 
 | Area | Assumption |
 |---|---|
@@ -504,7 +504,7 @@ The model was independently code-reviewed and every result was re-run after the 
 
 ## Appendix A. Files and reproduction
 
-- `code/` – the simulation (`params.py` holds every assumption).
+- `src/` – the simulation (`params.py` holds every assumption).
 - `results/real/` and `results/synthetic/` – charts and tables for each data mode.
 - `scripts/` (in the repository) – the data scripts for IEX prices and ERA5 weather.
 - **Repository:** [https://github.com/ntirth005/eroh-2026-r2-ev-energy-optimizer](https://github.com/ntirth005/eroh-2026-r2-ev-energy-optimizer) (private until the round closes).
