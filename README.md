@@ -8,11 +8,23 @@ This repository is a **digital twin + decision framework**: probabilistic foreca
 
 ## Framework
 
-```
-Data → ① Forecast (LightGBM, hierarchical reconciliation, error scenarios)
-     → ② Day-ahead decision (stochastic LP, CVaR): prices, hub-steering incentive, IEX bid, DISCOM schedule
-     → ③ Real-time dispatch (hourly 6 h MPC): batteries, swap-rack charging, balancing purchases
-     → ④ Execution + feedback
+```mermaid
+flowchart TD
+    D["<b>DATA</b><br/>Weather · IEX price · Charging and swap demand<br/>Renewable output · Battery health"]
+    F["<b>① FORECAST</b><br/>LightGBM → cluster reconciliation → error scenarios<br/><i>demand · renewable output · IEX price · price response</i>"]
+    P["<b>② DAY-AHEAD DECISION</b> (10:00 on the day before)<br/>Stochastic plan · 10 scenarios · CVaR risk term<br/><i>customer prices · steering incentive · IEX bid · DISCOM schedule</i>"]
+    R["<b>③ REAL-TIME DISPATCH</b> (every hour, 6-hour look-ahead)<br/><i>battery · swap-rack charging · balancing purchases · surplus sales</i>"]
+    E["<b>④ EXECUTION AND FEEDBACK</b><br/>Actual demand and prices → used to retrain forecasts"]
+    G["<b>GUARDRAILS</b> (apply to ② and ③)<br/>5% power and pack reserve · battery 15–95% charge<br/>price within ±20% of market · grid limit · DISCOM draw ≤ 10%"]
+    D --> F --> P --> R --> E
+    E -. feedback .-> F
+    E ~~~ G
+    classDef data fill:#f1f5f9,stroke:#64748b,color:#0f172a,stroke-width:1.5px;
+    classDef stage fill:#1e3a8a,stroke:#1e3a8a,color:#ffffff,stroke-width:1.5px;
+    classDef guard fill:#fff7ed,stroke:#ea580c,color:#7c2d12,stroke-width:1.5px;
+    class D data;
+    class F,P,R,E stage;
+    class G guard;
 ```
 
 ## Headline results (real IEX prices + real ERA5 weather, test year 23 Nov 2025 – 22 Nov 2026)
@@ -24,7 +36,7 @@ Data → ① Forecast (LightGBM, hierarchical reconciliation, error scenarios)
 | EBITDA margin (network / weakest cluster) | > 12 % | 9.3 % / 6.0 % | **18.8 % / 13.7 %** |
 | Network EBITDA | – | ₹338 Cr | **₹824 Cr** |
 
-Reliability depends on an assumed driver response to the steering incentive (break-even ≈ 62 % of maximum); the loss target needs SiC chargers. See `results/` and the report for the ladder, stress tests, sensitivities and the synthetic-vs-real comparison.
+Reliability depends on an assumed driver response to the steering incentive (the 89.7 % target needs the incentive to redirect at least about 62 % of overloaded-hub demand; we assume up to 70 %); the loss target needs SiC chargers. See `results/` and the report for the ladder, stress tests, sensitivities and the synthetic-vs-real comparison.
 
 > **Data caveat.** IEX prices and ERA5 weather are real. Charging/swap demand, customer price logs and battery state-of-health records are synthetic, and the incumbent baseline is calibrated to the case's stated KPIs.
 
