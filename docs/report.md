@@ -1,6 +1,10 @@
 # AI-Powered Energy Allocation, Storage Optimisation and Dynamic Pricing for a National EV Charging and Battery-Swapping Network
 
-*Engineers' Ring of Honour 2026, Round 2 case study. All numbers come from the simulation in `src/` and the tables in `results/real/tables/` and `results/synthetic/tables/`.*
+**Engineers' Ring of Honour 2026 — Round 2 Case Study**  
+**Submitted by:** Naumisharanya Tirth · Indian Institute of Information Technology (IIIT) Raichur (B.Tech Computer Science and Engineering, 2027)  
+**Date:** 22 November 2026 · **Code & Reproduction:** [github.com/ntirth005/eroh-2026-r2-ev-energy-optimizer](https://github.com/ntirth005/eroh-2026-r2-ev-energy-optimizer) *(public post-deadline)*
+
+*All numbers come from the simulation in `src/` and the tables in `results/real/tables/` and `results/synthetic/tables/`.*
 
 ---
 
